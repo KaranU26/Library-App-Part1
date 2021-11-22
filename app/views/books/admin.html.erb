@@ -1,0 +1,26 @@
+<div>
+  <table border="1">
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Genre</th>
+      <th>Sub-Genre</th>
+      <th>Pages</th>
+      <th>Publisher</th>
+      <th>Copies</th>
+      <th>Edit</th>
+    </tr>
+    <% @allbooks.each do |book|%>
+      <tr>
+        <td><%= book.title%></td>
+        <td><%= book.author%></td>
+        <td><%= book.genre%></td>
+        <td><%= book.sub_genre%></td>
+        <td><%= book.pages%></td>
+        <td><%= book.publisher%></td>
+        <td><%= book.copies%></td>
+        <td><%= button_to 'Edit', id: book.id, action: :edit %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

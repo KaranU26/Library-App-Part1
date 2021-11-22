@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<head>
+   <%= @title %> 
+</head>
+<div>
+
+  <table border="1">
+    <tr>
+      <td>Book Title</td>
+      <td>Copies Available</td>
+      <td>Users that have this book signed out</td>
+    </tr>
+    <tr>
+      <td><%= @bookid.title%></td>
+      <td><%= @bookid.copies%></td>
+    </tr>
+  </table>
+  <%= link_to 'Back', url_for(:back) %>
+  
+</div>

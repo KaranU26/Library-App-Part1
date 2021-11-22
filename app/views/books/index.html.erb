@@ -1,0 +1,64 @@
+<% if user_signed_in? %>
+<div>
+<%= button_to "Logout", destroy_user_session_path, method: :delete %> 
+<%= button_to "My Books", id: @user.id, action: :mybooks %> 
+<%= button_to "Admin", id: @user.id, action: :adminaccess %> 
+  <table border="1">
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Genre</th>
+      <th>Sub-Genre</th>
+      <th>Pages</th>
+      <th>Publisher</th>
+      <th>Copies</th>
+      <th>Details</th>
+    </tr>
+    <% @allbooks.each do |book|%>
+      <tr>
+        <td><%= book.title%></td>
+        <td><%= book.author%></td>
+        <td><%= book.genre%></td>
+        <td><%= book.sub_genre%></td>
+        <td><%= book.pages%></td>
+        <td><%= book.publisher%></td>
+        <td><%= book.copies%></td>
+        <td><%= button_to 'Details', id: book.id, action: :bookDetails %></td>
+        <% if @user.books.exists?(book.id)%>
+        <td><%= button_to 'Return', id: book.id, action: :return %></td>
+        <% else %>
+        <% if book.copies > 0%>
+        <td><%= button_to 'Borrow', id: book.id, action: :checkout %></td>
+        <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+</div>
+<% else %>
+  <p>You must login!</p>
+  <%= button_to "Login", new_user_session_path, method: :get %> 
+    <table border="1">
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Genre</th>
+      <th>Sub-Genre</th>
+      <th>Pages</th>
+      <th>Publisher</th>
+      <th>Copies</th>
+      <th>Details</th>
+    </tr>
+    <% @allbooks.each do |book|%>
+      <tr>
+        <td><%= book.title%></td>
+        <td><%= book.author%></td>
+        <td><%= book.genre%></td>
+        <td><%= book.sub_genre%></td>
+        <td><%= book.pages%></td>
+        <td><%= book.publisher%></td>
+        <td><%= book.copies%></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<head>
+    <title> My Books</title>
+</head>
+<div>
+
+  <table border="1">
+    <tr>
+      <td>Borrowed Books</td>
+      <td>Due Date</td>
+    </tr>
+    <% @user.books.each do |t|%>
+    <tr>
+        <td><%= t.title %></td>
+        <td><%= t.checkoutdate %></td>
+        <td><%= button_to 'Return', id: t.id, action: :return %></td>
+    </tr>
+    <% end %>
+  </table>
+  <%= link_to 'Back', url_for(:back) %>
+  
+</div>

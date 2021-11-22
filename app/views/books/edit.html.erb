@@ -1,0 +1,12 @@
+<div>
+    <%= form_for model: @editbook, url: {action: "update"} do |f|%>
+      <%= f.text_field :title %>
+      <%= f.text_field :author %>
+      <%= f.text_field :genre %>
+      <%= f.text_field :sub_genre %>
+      <%= f.number_field :pages %>
+      <%= f.text_field :publisher %>
+      <%= f.number_field :copies %>
+      <%= f.submit "Update Book"%>
+    <% end %>
+</div>
