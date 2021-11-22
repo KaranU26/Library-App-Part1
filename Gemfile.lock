@@ -215,6 +215,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-20
+  x86_64-darwin-21
 
 DEPENDENCIES
   bootsnap (>= 1.4.4)
@@ -237,7 +238,7 @@ DEPENDENCIES
   webpacker (~> 5.0)
 
 RUBY VERSION
-   ruby 2.6.3p62
+   ruby 3.0.0p0
 
 BUNDLED WITH
    2.2.29
