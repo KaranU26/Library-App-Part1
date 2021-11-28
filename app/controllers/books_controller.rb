@@ -1,21 +1,26 @@
 class BooksController < ApplicationController
-    def index
+
+    #display home page of application with list of books
+    def index 
         @allbooks = Book.all
         @user = current_user 
     end
 
+    #method for book details page
     def bookDetails
         @bookid = Book.find(params[:id])
         @title = @bookid.title
         #render 'bookDetails'
     end
 
+    #method for My Books page which shows users checked out books
     def mybooks
         @user = current_user
         @allmybooks = @user.books
         #render 'mybooks'
     end
 
+    #method that renders the admin page if the user that is logged in is flagged as admin
     def adminaccess
         @allbooks = Book.all
         @user = current_user
@@ -25,6 +30,7 @@ class BooksController < ApplicationController
         end
     end
 
+    #method used by the admin that will use a form to edit the contents of a book.
     def update
         @editbook = Book.find(params[:id])
         respond_to do |format|
@@ -34,10 +40,12 @@ class BooksController < ApplicationController
         end
     end
 
+    #method used to edit the specifically selected book by the admin
     def edit
         @editbook = Book.find(params[:id])
     end
 
+    #method that checks out the book for the user
     def checkout
         @book1 = Book.find(params[:id])
         @user = current_user
@@ -50,17 +58,9 @@ class BooksController < ApplicationController
             @book1.save
             @user.books.last.checkoutdate = DateTime.now
         end
-
-        #@book1.checkedoutusers.clear
-        #@user.books.clear
-        #@user.user_books.clear
-        puts @user.books.last.checkoutdate
-        puts @user.books
-        puts @book1.copies
-        puts @user.user_books.find_by_id(1)
-        puts @book1.checkedoutusers
     end
     
+    #method that retuns the users checked out book
     def return
         @booktoreturn = Book.find(params[:id])
         @user = current_user
