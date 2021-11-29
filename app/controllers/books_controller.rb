@@ -53,10 +53,19 @@ class BooksController < ApplicationController
         if @user.books.find_by_id(@book1)
             flash[:alert] = "Book already checked out!"
         else
-            @user.books << @book1
+            @book1ref = @book1
+            @book1ref.checkoutdate = Date.today
+            @user.books << @book1ref
             @book1.copies = @book1.copies.to_i - 1 #copies not subtracting for some reason
             @book1.save
-            @user.books.last.checkoutdate = DateTime.now
+        end
+        @currentdate = Date.today
+        @user.books.each do |usercheck|
+            puts usercheck.checkoutdate
+            @latedate = usercheck.checkoutdate + 7.days
+            if @currentdate >= @latedate
+                UserMailer.post_created(@user, @book1).deliver_now       
+            end
         end
     end
     
