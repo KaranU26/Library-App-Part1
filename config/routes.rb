@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   post '/books/adminaccess' => 'books#adminaccess', :as => :adminaccess_books
   post '/books/:id/edit' => 'books#edit', :as => :edit_books #edit book path
   patch 'books/:id', to: 'books#update' #edit book path
-  put 'books/:id', to: 'books#update'
 
 
   post 'books/checkout', to: 'books#checkout', as: 'checkout_books'

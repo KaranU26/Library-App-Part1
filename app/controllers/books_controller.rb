@@ -32,12 +32,10 @@ class BooksController < ApplicationController
 
     #method used by the admin that will use a form to edit the contents of a book.
     def update
+        byebug 
         @editbook = Book.find(params[:id])
-        respond_to do |format|
-            format.html do
-                @editbook.fetch(:editbook).update(params.require(:editbook).permit(:title, :author, :genre, :sub_genre, :pages, :publisher, :copies))
-            end
-        end
+        @editbook.update(title: params[:editbook][:title], author: params[:editbook][:author], genre: params[:editbook][:genre], sub_genre: params[:editbook][:sub_genre], pages: params[:editbook][:pages], publisher: params[:editbook][:publisher], copies: params[:editbook][:copies])
+        redirect_to editbook_path(@editbook) 
     end
 
     #method used to edit the specifically selected book by the admin

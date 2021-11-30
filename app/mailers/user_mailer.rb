@@ -6,7 +6,6 @@ class UserMailer < ApplicationMailer
   #   en.user_mailer.post_created.subject
   #
   def post_created(user, book)
-    @greeting = "Hi"
     @book = book
     @user = user
     mail(
