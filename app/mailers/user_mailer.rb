@@ -9,7 +9,7 @@ class UserMailer < ApplicationMailer
     @book = book
     @user = user
     mail(
-      :to @user.email,
+      :to => @user.email,
       :subject => @book.title + 'is overdue!'
     )
   end
