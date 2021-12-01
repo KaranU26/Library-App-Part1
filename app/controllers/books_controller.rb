@@ -32,10 +32,8 @@ class BooksController < ApplicationController
 
     #method used by the admin that will use a form to edit the contents of a book.
     def update
-        byebug 
         @editbook = Book.find(params[:id])
-        @editbook.update(title: params[:editbook][:title], author: params[:editbook][:author], genre: params[:editbook][:genre], sub_genre: params[:editbook][:sub_genre], pages: params[:editbook][:pages], publisher: params[:editbook][:publisher], copies: params[:editbook][:copies])
-        redirect_to editbook_path(@editbook) 
+        @editbook.update(title: params[:book][:title], author: params[:book][:author], genre: params[:book][:genre], sub_genre: params[:book][:sub_genre], pages: params[:book][:pages], publisher: params[:book][:publisher], copies: params[:book][:copies])
     end
 
     #method used to edit the specifically selected book by the admin
@@ -74,6 +72,12 @@ class BooksController < ApplicationController
         @booktoreturn.copies = @booktoreturn.copies + 1
         @booktoreturn.save
         @user.books.delete(Book.find(@booktoreturn.id))
+    end
+
+    private
+
+    def book_params
+        params.require(:book).permit(:title, :author, :genre, :sub_genre, :pages, :publisher, :copies)
     end
 
 end
